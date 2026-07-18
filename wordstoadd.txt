@@ -1,0 +1,8 @@
+Stearoyl linoleoyl glycosylphosphatidylinositol
+Stearoyl arachidonyl glycosylphosphatidylinositol
+Palmitoyl docosahexanoyl glycosylphosphatidylethanolamine
+Palmitoyl linoleoyl glycosylphosphatidylinositol 
+Stearoyl-linoleoyl-glycosylphosphatidylinositol
+Stearoyl-arachidonyl-glycosylphosphatidylinositol
+Palmitoyl-docosahexanoyl-glycosylphosphatidylethanolamine
+Palmitoyl-linoleoyl-glycosylphosphatidylinositol 
