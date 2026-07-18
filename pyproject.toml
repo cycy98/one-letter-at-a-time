@@ -1,0 +1,41 @@
+[project]
+name = "one-letter-at-a-time"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "discord-py>=2.7.1",
+]
+
+[tool.ruff]
+line-length = 130
+indent-width = 4
+target-version = "py314"
+
+[tool.ruff.lint]
+# Require explicit selection of preview rules.
+explicit-preview-rules = true
+select = ["ALL"]
+preview = true
+extend-ignore = [
+  "C901",
+  "T201",    # Ignore print
+  "DTZ005",
+  "N806",    # allow dunder
+  "S311",    # allow non-crypto random
+  "INP001",  # implicit namespace
+  "D100",    # Missing Docstring
+  "D101",    # Missing Docstring
+  "D102",    # Missing Docstring
+  "D103",    # Missing Docstring
+  "D107",    # Missing Docstring
+  "FBT001",  # boolean-default-value-positional-argument
+  "FBT002",  # boolean-default-value-positional-argument
+  "FBT003",  # boolean-default-value-positional-argument
+  "ERA001",  # Commented out code
+  "PLR2004", # Magic numbers
+  "PLR0913", # Too many arguments
+  "TRY301",  # Abstract `raise` to an inner function
+  "SLF001",  # Allow accessing private member (blackjack21 support)
+]
