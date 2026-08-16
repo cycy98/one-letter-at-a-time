@@ -6,7 +6,7 @@
 
 1.2. Letters or characters from other scripts or Old English runes are not permitted (e.g. ß, þ or ƿ) and will be considered invalid except if there is a standard modern spelling.
 
-1.3. Ligatures are considered two different letters (e.g. 'archæologist' becomes 'archaeologist'), and also can be added with the second letter omitted (e.g. 'archæologist' becomes 'archeologist').
+1.3. Ligatures are considered two different letters (e.g. 'archæologist' becomes 'archaeologist'), and also can be added with the first letter omitted (e.g. 'archæologist' becomes 'archeologist').
 
 1.4. Punctuation (except hyphens and apostrophes) is either removed (e.g. full stops for acronyms), replaced with a hyphen (e.g. em dashes) or the name (C++ → c-plus-plus).
 
@@ -42,6 +42,6 @@
 
 3.2. Names of shapes beyond 10 dimensions are not allowed; for any shape to be added, it must either be common or is one of some finite category
 
-3.3. Googolisms from the -illion system, such as million, billion, trillion, etc., can only be added if the numeral prefix before is less than one hundred (i.e., less than a millillion, 10^3003), but similar systems (-illard, Donald Knuth's -yllion) can be added under the same rule.
+3.3. Googolisms from the -illion system, such as million, billion, trillion, etc., can only be added if the numeral prefix before is less than one hundred (i.e., less than a millillion, 10^3003), but similar systems (-illard, Donald Knuth's -yllion) can be added under the same rule
 
-Current length limit: 70 letters
+Current length limit: 100 characters
