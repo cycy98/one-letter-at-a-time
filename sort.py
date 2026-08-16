@@ -1,9 +1,13 @@
-import regex as re
+import pathlib
 import sys
+
+import regex as re
+
 
 def extract_words(text):
     pattern = r"[A-Za-z\-']*"
     return re.findall(pattern, text.lower())
+
 
 def apply_sorts(words, criteria):
     if "unique" in criteria:
@@ -24,16 +28,18 @@ def apply_sorts(words, criteria):
 
     return words
 
+
 def main(input_file, output_file, criteria):
-    with open(input_file, "r", encoding="utf-8") as f:
+    with pathlib.Path(input_file).open(encoding="utf-8") as f:
         text = f.read()
 
     words = extract_words(text)
     words = apply_sorts(words, criteria)
-    words.remove("")   
+    words.remove("")
 
-    with open(output_file, "w", encoding="utf-8") as f:
+    with pathlib.Path(output_file).open("w", encoding="utf-8") as f:
         f.write("\n".join(words))
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:

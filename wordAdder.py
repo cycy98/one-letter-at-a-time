@@ -9,6 +9,7 @@ from sort import extract_words
 def sort_key(word: str) -> tuple[int, str]:
     return (-len(word), "".join(chr(0x10FFFF - ord(char)) for char in word))
 
+
 def addwords(words_to_add: set[str] | None = None) -> set[str]:
     output_file = pathlib.Path("wordlist.txt")
 
@@ -40,6 +41,7 @@ def addwords(words_to_add: set[str] | None = None) -> set[str]:
     merged_words.extend(chain([right_word], right) if right_word is not None else right)
     output_file.write_text("\n".join(merged_words), encoding="utf-8")
     return set(new_words)
+
 
 if __name__ == "__main__":
     addwords()

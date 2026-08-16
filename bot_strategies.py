@@ -98,8 +98,7 @@ BOT_REGISTRY: dict[str, dict[str, tuple[str, BotStrategy]]] = {
 def available_bots_text(game_key: str | None = None) -> str:
     if game_key is None:
         return "; ".join(
-            f"{key}: {', '.join(sorted(bot_name for bot_name, _ in bots.values()))}"
-            for key, bots in sorted(BOT_REGISTRY.items())
+            f"{key}: {', '.join(sorted(bot_name for bot_name, _ in bots.values()))}" for key, bots in sorted(BOT_REGISTRY.items())
         )
     bots = BOT_REGISTRY.get(game_key, {})
     return ", ".join(sorted(bot_name for bot_name, _ in bots.values()))

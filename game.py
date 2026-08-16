@@ -30,6 +30,7 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 WORDLIST_PATH = Path("wordlist.txt")
 TOKEN_PATH = Path("token")
 
+
 def update_wordlist(new_words: set[str]) -> None:
     WORDLIST.update(new_words)
     update_wordlist_list(new_words)
@@ -40,15 +41,18 @@ def remove_from_wordlist(words_to_remove: set[str]) -> None:
     WORDLIST.difference_update(words_to_remove)
     remove_words_from_wordlist(words_to_remove)
 
+
 type Player = discord.Member | discord.User | BotPlayer
 
 CHESSGUYYY_USER_ID = 1168452148049231934
 GHOST_USER_ID = 956345979500634173
 
+
 class Lobby(TypedDict):
     players: list[Player]
     game_key: str
     bots: list[BotPlayer]
+
 
 GAME_REGISTRY: dict[str, tuple[str, GameFactory]] = {
     "oneletteratatime": ("One Letter at a Time", OneLetterAtATime),
@@ -108,8 +112,10 @@ class BotMessage:
     async def add_reaction(self, _: str) -> None:
         return None
 
+
 def normalize_apostrophe(text: str) -> str:
     return text.replace("’", "'")  # ruff:ignore[ambiguous-unicode-character-string]
+
 
 def normalize_game_name(game_name: str) -> str:
     return game_name.strip().casefold().replace(" ", "").replace("-", "")
@@ -238,10 +244,12 @@ async def oneletteratatime(ctx: commands.Context) -> None:
     """Queue a game of One Letter at a Time."""
     await queue_game_lobby(ctx, "oneletteratatime")
 
+
 @bot.command()
 async def ghost(ctx: commands.Context) -> None:
     """Queue a game of Three Thirds of a Ghost."""
     await queue_game_lobby(ctx, "threethirdsofaghost")
+
 
 @bot.command(aliases=["q"])
 async def queuegame(ctx: commands.Context, game_name: str = "oneletteratatime") -> None:
@@ -268,6 +276,7 @@ async def queue_game_lobby(ctx: commands.Context, game_name: str) -> None:
         "Use !addbot <bot> to add a bot.",
     )
 
+
 @bot.command()
 async def rules(ctx: commands.Context, game_name: str = "oneletteratatime") -> None:
     """Check the rules for a specific game."""
@@ -277,9 +286,7 @@ async def rules(ctx: commands.Context, game_name: str = "oneletteratatime") -> N
         return
 
     rules_text = RULES[game_key]
-    await ctx.send(
-        f"Rules for {get_game_label(game_key)}:\n{rules_text}\n\nAvailable bots: {available_bots_text(game_key)}"
-    )
+    await ctx.send(f"Rules for {get_game_label(game_key)}:\n{rules_text}\n\nAvailable bots: {available_bots_text(game_key)}")
 
 
 @bot.command()
@@ -310,8 +317,7 @@ async def addbot(ctx: commands.Context, bot_name: str, *, game_name: str | None 
     strategy_info = get_bot_strategy(game_key, bot_key)
     if strategy_info is None:
         await ctx.send(
-            f"Unknown bot '{bot_name}' for {get_game_label(game_key)}. "
-            f"Available bots: {available_bots_text(game_key)}."
+            f"Unknown bot '{bot_name}' for {get_game_label(game_key)}. Available bots: {available_bots_text(game_key)}.",
         )
         return
 
@@ -320,6 +326,7 @@ async def addbot(ctx: commands.Context, bot_name: str, *, game_name: str | None 
     lobby["players"].append(bot_player)
     lobby["bots"].append(bot_player)
     await ctx.send(f"Added bot {bot_player.name} to the lobby.")
+
 
 @bot.command(aliases=["a"])
 async def addwords(ctx: commands.Context, *, words: str | None = None) -> None:
@@ -349,8 +356,8 @@ async def addwords(ctx: commands.Context, *, words: str | None = None) -> None:
         added_words = wordAdder.addwords(new_words)
         update_wordlist(added_words)
         await ctx.send(f"""Added {len(new_words)} words to the wordlist.
-{len(words_already_there)} words were already in the dict: {' ,'.join(words_already_there)}
-{len(invalid_words)} Invalid words: {', '.join(invalid_words)}""")
+{len(words_already_there)} words were already in the dict: {" ,".join(words_already_there)}
+{len(invalid_words)} Invalid words: {", ".join(invalid_words)}""")
 
 
 @bot.command(aliases=["r"])
@@ -381,8 +388,9 @@ async def removeword(ctx: commands.Context, *, words: str | None = None) -> None
 
     await ctx.send(
         f"""Removed {len(removed_words)} words from the wordlist.
-{len(missing_words)} words were not in the dict: {', '.join(sorted(missing_words))}"""
+{len(missing_words)} words were not in the dict: {", ".join(sorted(missing_words))}""",
     )
+
 
 @bot.command(aliases=["s"])
 async def solve(ctx: commands.Context, game_type: str, prompt: str) -> None:
@@ -404,8 +412,9 @@ async def solve(ctx: commands.Context, game_type: str, prompt: str) -> None:
         await ctx.send("No results found.")
     else:
         await ctx.send(
-            f"```\n{'\n'.join(results[:10])}" + (f"\n and {len(results) - 10} more results...```" if len(results) > 10 else "```")
+            f"```\n{'\n'.join(results[:10])}" + (f"\n and {len(results) - 10} more results...```" if len(results) > 10 else "```"),
         )
+
 
 with TOKEN_PATH.open(encoding="utf-8") as f:
     token = f.read().strip()

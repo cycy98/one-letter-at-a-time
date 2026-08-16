@@ -8,6 +8,7 @@ from wordconstants import PREFIXES, WORDLIST
 if TYPE_CHECKING:
     import discord
 
+
 def isfinal(prompt: str) -> bool:
     prompt = prompt.casefold()
     return prompt in WORDLIST and not any(word != prompt and word.startswith(prompt) for word in WORDLIST)
@@ -30,9 +31,11 @@ class OneLetterAtATime:
     def is_message_valid(self, user_input: str, player: discord.Member | discord.User) -> bool:
         user_input = user_input.casefold()
         current_prompt = self.current_prompt.casefold()
-        return (player == self.current_player() and
-                len(user_input) == len(current_prompt) + 1 and
-                user_input.startswith(current_prompt))
+        return (
+            player == self.current_player()
+            and len(user_input) == len(current_prompt) + 1
+            and user_input.startswith(current_prompt)
+        )
 
     def is_input_valid(self, user_input: str) -> bool:
         return user_input.casefold() in PREFIXES

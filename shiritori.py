@@ -8,6 +8,7 @@ from wordconstants import WORDLIST
 if TYPE_CHECKING:
     import discord
 
+
 class Shiritori:
     def __init__(self, players: list[discord.Member | discord.User]) -> None:
         self.current_word = choice(list(WORDLIST))
@@ -17,6 +18,7 @@ class Shiritori:
 
     def current_player(self) -> discord.Member | discord.User:
         return self.players[self.turn]
+
     def next_turn(self) -> None:
         self.turn = (self.turn + 1) % len(self.players)
 
@@ -30,11 +32,11 @@ class Shiritori:
     def is_message_valid(self, user_input: str, player: discord.Member | discord.User) -> bool:
         user_input = user_input.casefold()
         current_word = self.current_word.casefold()
-        return (len(user_input) > 0 and
-                user_input[0] == current_word[-1]
-                and player == self.current_player())
+        return len(user_input) > 0 and user_input[0] == current_word[-1] and player == self.current_player()
+
     def is_input_valid(self, user_input: str) -> bool:
         return user_input.casefold() in WORDLIST
+
     def is_input_played(self, user_input: str) -> bool:
         return user_input.casefold() in self.played_words
 
@@ -47,7 +49,7 @@ class Shiritori:
                 if self.is_input_played(content):
                     await message.add_reaction("🔁")
                     await message.channel.send(f"Game over! {author.mention} played word already played.")
-                    return True # ends the game if a word is repeated
+                    return True  # ends the game if a word is repeated
                 self.played_words.add(content)
                 self.current_word = content
                 await message.add_reaction("✅")
