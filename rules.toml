@@ -1,0 +1,15 @@
+oneletteratatime = """
+Extend the current string by one letter, typing the whole string each turn.
+The first player picks the opening letter. The string must stay the prefix of
+a real word; if it isn't, you take a strike. Three strikes and you're out.
+Complete a word that nothing extends and play restarts from a new letter."""
+
+threethirdsofaghost = """
+As One Letter at a Time, but five strikes to elimination, and completing a
+word longer than three letters, or reaching a dead end, costs you a third of
+a ghost and restarts play from a new letter. Three thirds and you're out."""
+
+shiritori = """
+Play a word starting with the last letter of the previous word.
+If you repeat a word, you get eliminated. When no unused word fits, the stuck 
+player is eliminated."""
